@@ -2,6 +2,7 @@ $(function () {
   var old = TimeLineView.prototype.renderTimeLine;
   TimeLineView.prototype.renderTimeLine = function (el) {
 
+    // render
     old.apply(this, arguments);
 
     // gyazo url
@@ -30,7 +31,7 @@ $(function () {
     });
 
     // image url
-    $(el).find('a[href^="http://"]', 'a[href^="https://"]').each(function() {
+    $(el).find(':not(a[href^="https://gyazo.com/"])').find('a[href^="http://"]', 'a[href^="https://"]').each(function() {
       var url = $(this).attr("href");
 
       if($(this).children('img[src^="'+url+'"]').length > 0){
