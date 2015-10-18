@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "ChatWork Image Display",
+  "version": "0.1",
+  "description": "Add image on ChatWork from image URL",
+  "content_scripts": [
+    {
+      "matches": ["https://www.chatwork.com/*"],
+      "js": ["loader.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [
+    "tabs"
+  ],
+  "web_accessible_resources":[
+    "jquery-1.11.3.min.js",
+    "addImage.js"
+  ],
+  "icons" : {
+    "128": "icon.png"
+  }
+}
