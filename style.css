@@ -1,0 +1,7 @@
+img.thumbnail {
+  display: block;
+  min-height: 150px;
+  max-height: 250px;
+  max-width: 800px;
+  border: 1px solid #CCC;
+}
