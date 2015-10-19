@@ -5,8 +5,14 @@
   "description": "Add image on ChatWork from image URL",
   "content_scripts": [
     {
-      "matches": ["https://www.chatwork.com/*"],
-      "include_globs": ["https://www.chatwork.com/#!rid*"],
+      "matches": [
+        "https://www.chatwork.com/*",
+        "https://kcw.kddi.ne.jp/*"
+      ],
+      "include_globs": [
+        "https://www.chatwork.com/#!rid*",
+        "https://kcw.kddi.ne.jp/#!rid*"
+      ],
       "css": ["style.css"],
       "js": ["loader.js"],
       "run_at": "document_end"
