@@ -37,9 +37,7 @@ $(function () {
       if($(this).children('img[src^="'+url+'"]').length > 0){
           return false;
       }
-
-      $('<img class="thumbnail" />')
-      .attr("src", url)
+      $('<img class="thumbnail" />').attr("src", url).attr("alt", "")
       .appendTo(this)
       .error(function(){
         this.remove();
