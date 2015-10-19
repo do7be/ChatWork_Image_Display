@@ -39,11 +39,11 @@ $(function () {
       }
 
       $('<img class="thumbnail" />')
-        .attr("src", url)
-        .appendTo(this)
-        .error(function(){
-          this.remove();
-        });
+      .attr("src", url)
+      .appendTo(this)
+      .error(function(){
+        this.remove();
+      });
     });
   };
 });
