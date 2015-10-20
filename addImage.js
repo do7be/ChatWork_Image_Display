@@ -31,17 +31,34 @@ $(function () {
     });
 
     // image url
-    $(el).find(':not(a[href^="https://gyazo.com/"])').find('a[href^="http://"]', 'a[href^="https://"]').each(function() {
+    $(el).find(':not(a[href^="https://gyazo.com/"])')
+    .find('a[href^="http://"]', 'a[href^="https://"]')
+    .each(function() {
       var url = $(this).attr("href");
-
-      if($(this).children('img[src^="'+url+'"]').length > 0){
-          return false;
+      if ($(this).children('img[src^="'+url+'"]').length > 0) {
+        return true;
       }
-      $('<img class="thumbnail" />').attr("src", url).attr("alt", "")
-      .appendTo(this)
-      .error(function(){
-        this.remove();
-      });
+
+      // include anker or cgi
+      var error_reg = new RegExp('[#|\?]', 'i');
+      if (error_reg.test(url)) {
+        return true;
+      }
+
+      var img_reg = new RegExp('\.[jpg|gif|png|ico]$', 'i');
+      if (img_reg.test(url)) {
+        // absolute image
+        $('<img class="thumbnail" />').attr("src", url)
+        .appendTo(this)
+      }
+      else {
+        // guess image
+        $('<img class="thumbnail-no-extension" />').attr("src", url)
+        .appendTo(this)
+        .error(function(){
+          this.remove();
+        });
+      }
     });
   };
 });

@@ -1,6 +1,10 @@
 img.thumbnail {
   display: block;
   height: 250px;
-  border: 1px solid #CCC;
+  text-align: center;
+}
+img.thumbnail-no-extension {
+  display: block;
+  max-height: 250px;
   text-align: center;
 }
