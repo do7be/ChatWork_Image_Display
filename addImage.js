@@ -32,7 +32,7 @@ $(function () {
 
     // image url
     $(el).find(':not(a[href^="https://gyazo.com/"])')
-    .find('a[href^="http://"]', 'a[href^="https://"]')
+    .find('a[href^="http://"], a[href^="https://"]')
     .each(function() {
       var url = $(this).attr("href");
       if ($(this).children('img[src^="'+url+'"]').length > 0) {
