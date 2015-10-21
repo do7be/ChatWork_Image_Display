@@ -45,7 +45,7 @@ $(function () {
         return true;
       }
 
-      var img_reg = new RegExp('\.[jpg|gif|png|ico]$', 'i');
+      var img_reg = new RegExp('\.(jpg|gif|png|ico)$', 'i');
       if (img_reg.test(url)) {
         // absolute image
         $('<img class="thumbnail" />').attr("src", url)
