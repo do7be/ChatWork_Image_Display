@@ -49,7 +49,7 @@ $(function () {
       if (img_reg.test(url)) {
         // absolute image
         $('<img class="thumbnail" />').attr("src", url)
-        .appendTo(this)
+        .appendTo(this);
       }
       else {
         // guess image
@@ -57,6 +57,11 @@ $(function () {
         .appendTo(this)
         .error(function(){
           this.remove();
+        })
+        .bind("load", function(){
+          var height = $(this).height();
+          var top = $('#_timeLine').scrollTop();
+          $('#_timeLine').scrollTop(top + height, 'normal');
         });
       }
     });
