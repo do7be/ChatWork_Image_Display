@@ -59,6 +59,7 @@ $(function () {
           this.remove();
         })
         .bind("load", function(){
+          $(this).show();
           var height = $(this).height();
           var top = $('#_timeLine').scrollTop();
           $('#_timeLine').scrollTop(top + height, 'normal');

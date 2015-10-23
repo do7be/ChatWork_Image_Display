@@ -4,7 +4,7 @@ img.thumbnail {
   text-align: center;
 }
 img.thumbnail-no-extension {
-  display: block;
+  display: none;
   max-height: 250px;
   text-align: center;
 }
