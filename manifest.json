@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ChatWork Image Display",
-  "version": "0.6",
+  "version": "0.7",
   "description": "Add image on ChatWork from image URL",
   "content_scripts": [
     {
