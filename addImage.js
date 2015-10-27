@@ -25,13 +25,36 @@ $(function () {
           .error(function(){
               // guess gif
               url = $(this).attr("src").replace(".jpg", ".gif");
-              $(this).attr("src", url);
+              $(this).attr("src", url)
+              .error(function(){
+                $(this).remove();
+              });
           });
       });
     });
 
+    // lgtm.in url
+    $(el).find('a[href^="http://lgtm.in/i/"]').each(function() {
+      var urls = $(this).attr("href").split("/");
+      var url = "http://lgtm.in/p/"+urls[4];
+
+      if($(this).children('img[src^="'+url+'"]').length > 0){
+          return false;
+      }
+
+      // load lgtm image
+      $('<img class="thumbnail" />')
+      .attr("src", url)
+      .appendTo(this)
+      .error(function(){
+        this.remove();
+      })
+    });
+
     // image url
-    $(el).find(':not(a[href^="https://gyazo.com/"])')
+    $(el)
+    .find(':not(a[href^="https://gyazo.com/"])')
+    .find(':not(a[href^="http://lgtm.in/i/"])')
     .find('a[href^="http://"], a[href^="https://"]')
     .each(function() {
       var url = $(this).attr("href");
