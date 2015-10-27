@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "ChatWork Image Display",
-  "version": "0.7",
-  "description": "Add image on ChatWork from image URL",
+  "version": "0.8",
+  "description": "ChatWork上に貼られた画像URLのサムネイルを表示します - Add image on ChatWork from image URL",
   "content_scripts": [
     {
       "matches": [
