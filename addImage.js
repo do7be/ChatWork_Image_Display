@@ -10,26 +10,47 @@ $(function () {
       var urls = $(this).attr("href").split("/");
       var url = "https://i.gyazo.com/"+urls[3];
 
-      if($(this).children('img[src^="'+url+'"]').length > 0){
+      if($(this).children('div').length > 0){
           return false;
       }
 
       // guess png
-      $('<img class="thumbnail" />')
-      .attr("src", url+".png")
+      var self = this;
+      $('<img class="thumbnail"/>').attr('src', url + '.png')
       .appendTo(this)
+      .load(function() {
+        url = $(this).attr('src');
+        $('<div class="thumbnail" />')
+        .css("background-image", 'url(' + url + ')')
+        .appendTo($(this).parent());
+        $(this).remove();
+      })
       .error(function(){
-          // guess jpg
-          url = $(this).attr("src").replace(".png", ".jpg");
-          $(this).attr("src", url)
+        // guess jpg
+        url = $(this).attr('src').replace(".png", ".jpg");
+        $(this).attr('src', url)
+        .load(function() {
+          url = $(this).attr('src');
+          $('<div class="thumbnail" />')
+          .css("background-image", 'url(' + url + ')')
+          .appendTo($(this).parent());
+          $(this).remove();
+        })
+        .error(function(){
+          // guess gif
+          url = $(this).attr('src').replace(".jpg", ".gif");
+          $(this).attr('src', url)
+          .load(function() {
+            url = $(this).attr('src');
+            $('<div class="thumbnail" />')
+            .css("background-image", 'url(' + url + ')')
+            .appendTo($(this).parent());
+            $(this).remove();
+          })
           .error(function(){
-              // guess gif
-              url = $(this).attr("src").replace(".jpg", ".gif");
-              $(this).attr("src", url)
-              .error(function(){
-                $(this).remove();
-              });
+            $(this).remove();
           });
+        });
       });
     });
 
@@ -38,13 +59,13 @@ $(function () {
       var urls = $(this).attr("href").split("/");
       var url = "http://lgtm.in/p/"+urls[4];
 
-      if($(this).children('img[src^="'+url+'"]').length > 0){
+      if($(this).children('div').length > 0){
           return false;
       }
 
       // load lgtm image
-      $('<img class="thumbnail" />')
-      .attr("src", url)
+      $('<div class="thumbnail" />')
+      .css("background-image", 'url(' + url + ')')
       .appendTo(this)
       .error(function(){
         this.remove();
@@ -58,7 +79,7 @@ $(function () {
     .find('a[href^="http://"], a[href^="https://"]')
     .each(function() {
       var url = $(this).attr("href");
-      if ($(this).children('img[src^="'+url+'"]').length > 0) {
+      if ($(this).children('div').length > 0) {
         return true;
       }
 
@@ -72,12 +93,12 @@ $(function () {
       var lgtm_reg = new RegExp('^http://lgtm\.in/p/', 'i');
       if (img_reg.test(url) || lgtm_reg.test(url)) {
         // absolute image(has extension or lgtm.in)
-        $('<img class="thumbnail" />').attr("src", url)
+        $('<div class="thumbnail" />').css("background-image", 'url(' + url + ')')
         .appendTo(this);
       }
       else {
         // guess image
-        $('<img class="thumbnail-no-extension" />').attr("src", url)
+        $('<div class="thumbnail-no-extension" />').css("background-image", 'url(' + url + ')')
         .appendTo(this)
         .error(function(){
           this.remove();
