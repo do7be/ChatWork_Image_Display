@@ -102,20 +102,6 @@ $(function () {
         $('<div class="thumbnail" />').css("background-image", 'url(' + url + ')')
         .appendTo(this);
       }
-      else {
-        // guess image
-        $('<div class="thumbnail-no-extension" />').css("background-image", 'url(' + url + ')')
-        .appendTo(this)
-        .error(function(){
-          this.remove();
-        })
-        .bind("load", function(){
-          $(this).css("display", "block").show();
-          var height = $(this).height();
-          var top = $('#_timeLine').scrollTop();
-          $('#_timeLine').scrollTop(top + height, 'normal');
-        });
-      }
     });
   };
 });
