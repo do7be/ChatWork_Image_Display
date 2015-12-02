@@ -64,9 +64,15 @@ $(function () {
       }
 
       // load lgtm image
-      $('<div class="thumbnail" />')
-      .css("background-image", 'url(' + url + ')')
+      $('<img class="thumbnail"/>').attr('src', url)
       .appendTo(this)
+      .load(function() {
+        url = $(this).attr('src');
+        $('<div class="thumbnail" />')
+        .css("background-image", 'url(' + url + ')')
+        .appendTo($(this).parent());
+        $(this).remove();
+      })
       .error(function(){
         this.remove();
       })
