@@ -1,10 +1,14 @@
 img.thumbnail {
   display: block;
   height: 250px;
-  text-align: center;
+  width: 0px;
 }
-img.thumbnail-no-extension {
-  display: none;
-  max-height: 250px;
-  text-align: center;
+
+div.thumbnail {
+  display: block;
+  background-position: left;
+  background-repeat: no-repeat;
+  width: 600px;
+  height: 250px;
+  background-size: contain;
 }
